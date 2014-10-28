@@ -23,9 +23,9 @@ bool GameServer::StartServer(String^ ip, int port)
 		IPEndPoint^ endPoint = nullptr;
 		return true;
 	}
-	catch (Exception^ ex)
+	catch (...)//(Exception^ ex)
 	{
-		printf_s("Exception found:%d", ex->Message);
+		QException::Exception("Unable to start server!", QException::QCRITICAL);
 		return false;
 	}
 

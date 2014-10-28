@@ -2,6 +2,7 @@
 #include "Client.h"
 //#include <windows.networking.sockets.h>
 #include <string>
+#include "QException.h"
 //#include <Windows.h>
 #using <System.dll>
 using namespace System;
