@@ -1,0 +1,16 @@
+15:19:05  Warning: Command {!exit} not found!
+ 
+15:21:19  Warning: Cannot bind!
+ 
+15:24:40  Warning: Command {liten} not found!
+ 
+15:24:42  Warning: Cannot bind!
+ 
+15:26:04  Warning: Cannot bind!
+ 
+15:38:32  Warning: Error accepting connection
+ 
+15:39:04  Warning: Error accepting connection
+ 
+15:42:31  Warning: Error accepting connection
+ 

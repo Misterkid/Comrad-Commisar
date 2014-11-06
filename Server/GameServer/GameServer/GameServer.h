@@ -14,12 +14,14 @@ class GameServer
 	public:
 		GameServer(int);//Constructor
 		~GameServer();//Destructor.
-		bool StartServer(String^, int);//Start the server. Return false if failed.
+		bool StartServer(int);//Start the server. Return false if failed.
 	private:
 		int maxConnections;//ammount of clients that can connect
 		int connections;//Ammount of clients that are connected
+		Socket sSockets;
 		bool AliveCheck();
 		void SpawnNPCS();
 		Client clients[];//all the clients.
+		//delegate void BeginAcceptCallback(IAsyncResult^ ar);
 };
 
