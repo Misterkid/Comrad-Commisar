@@ -1,29 +1,34 @@
 #include "stdafx.h"
 #include "GameServer.h"
 
-
-
-GameServer::GameServer(int _maxConnections)
+GameServer::GameServer()
 {
-	maxConnections = _maxConnections;
-	printf_s("Server started max connections: %d \n", maxConnections);
-	StartServer(1337);
+	//maxConnections = _maxConnections;
+	//clients = new vector<Client>();
+	//printf_s("Server started max connections: %d \n", maxConnections);
+	//StartServer(1337);
+	//clients = gcnew list<Client>();
+	maxConnections = 10;
+	clients = *new list<Client>;
 }
-
 //Destructor
+/*
 GameServer::~GameServer()
 {
 
-}
-void BeginAcceptCallback(IAsyncResult^ ar)
+}*/
+void GameServer::BeginAcceptCallback(IAsyncResult^ ar)
 {
 	try
 	{
 		Socket^ sSocket = dynamic_cast<Socket^>(ar->AsyncState);
-		printf_s("Socket: %s", sSocket);//Null but why
 		Socket^ clientSocket = sSocket->EndAccept(ar);
-		sSocket->BeginAccept(gcnew AsyncCallback(BeginAcceptCallback), nullptr);
-		printf_s("IP: %s", clientSocket->RemoteEndPoint);
+		//BeginAcceptCallback
+		
+		sSocket->BeginAccept(gcnew AsyncCallback(GameServer::getInstance().BeginAcceptCallback), sSocket);
+		printf_s("IP: %d \n", clientSocket->RemoteEndPoint);
+		Client* client = new Client(clientSocket);
+		GameServer::getInstance().AddClient(*client);
 	}
 	catch (Exception^ ex)
 	{
@@ -33,35 +38,24 @@ void BeginAcceptCallback(IAsyncResult^ ar)
 }
 bool GameServer::StartServer(int port)
 {
+	printf_s("Server started max connections: %d \n", maxConnections);
 	try
 	{
 		Socket^ sSocket = nullptr;
 		sSocket = gcnew Socket(AddressFamily::InterNetwork, SocketType::Stream, ProtocolType::Tcp);
-		//TcpListener^ listener = nullptr;
 		IPHostEntry^ ipHostInfo = Dns::GetHostEntry(Dns::GetHostName());
-		//IPAddress^ ipAddress = ipHostInfo->AddressList[0];
-		//printf_s("IPAddr: %s \n", ipAddress->ToString());
 		sSocket->Bind(gcnew IPEndPoint((__int64)0, port));
-		//sSocket->Bind(gcnew IPEndPoint(ipAddress, port);
-		//printf_s("IPAddr: %s \n", ipAddress->ToString());
 		/*Hey !*/sSocket->Listen(0);//!
-		sSocket->BeginAccept(gcnew AsyncCallback(BeginAcceptCallback), nullptr);
+		sSocket->BeginAccept(gcnew AsyncCallback(this->BeginAcceptCallback), sSocket);
 		return true;
 	}
 	catch (Exception^ ex)
 	{
-		//QException::Exception("Unable to start server!", QException::QCRITICAL);
-		//msclr::interop::marshal_as
-		//System::Runtime::InteropServices::Marshal::StringToCoTaskMemUni(ex->Message);
-		//string message = msclr::interop::marshal_as<string>(ex->Message);
-		//msclr::interop::marshal_as< std::string >(xyz);
-		//QException::Exception(message, QException::QWARNING);
 		QException::Exception("Cannot bind!", QException::QWARNING);
 		return false;
 	}
-
-
 }
+
 bool GameServer::AliveCheck()
 {
 	return false;
@@ -69,4 +63,25 @@ bool GameServer::AliveCheck()
 void GameServer::SpawnNPCS()
 {
 
+}
+/*
+Client GameServer::GetClientBySocket(Socket^ socket)
+{
+
+	for each (Client client in clients)
+	{
+		if (socket->Handle == client.socket->Handle )
+		{
+			return client;
+		}
+	}
+
+}*/
+void GameServer::AddClient(Client client)
+{
+	clients.push_back(client);
+}
+void GameServer::RemoveClient(Client client)
+{
+	//clients.remove(client);
 }
