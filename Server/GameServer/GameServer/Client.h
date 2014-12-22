@@ -24,7 +24,7 @@ class Client
 		void Connect();
 		void Send(String^);
 		void Close();
-		gcroot<Socket^> socket;
+		gcroot<Socket^> socket;//Best thing ever!
 	private:
 		//Socket^ socket;
 		PackageHandler packageHandler;

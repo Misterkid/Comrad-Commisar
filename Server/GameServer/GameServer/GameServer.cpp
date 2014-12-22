@@ -64,7 +64,7 @@ void GameServer::SpawnNPCS()
 {
 
 }
-/*
+
 Client GameServer::GetClientBySocket(Socket^ socket)
 {
 
@@ -75,13 +75,15 @@ Client GameServer::GetClientBySocket(Socket^ socket)
 			return client;
 		}
 	}
+	return nullptr;
 
-}*/
+}
 void GameServer::AddClient(Client client)
 {
 	clients.push_back(client);
 }
 void GameServer::RemoveClient(Client client)
 {
+	//clients.splice(client);
 	//clients.remove(client);
 }

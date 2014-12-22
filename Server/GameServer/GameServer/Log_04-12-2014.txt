@@ -60,3 +60,25 @@
  
 15:03:33  Warning: Failed to receive
  
+15:17:18  Warning: Command {dd} not found!
+ 
+15:17:18  Warning: Command {d} not found!
+ 
+15:17:19  Warning: Command {d} not found!
+ 
+15:17:19  Warning: Command {d} not found!
+ 
+15:17:19  Warning: Command {d} not found!
+ 
+15:17:19  Warning: Command {d} not found!
+ 
+15:17:19  Warning: Command {d} not found!
+ 
+15:17:20  Warning: Command {d} not found!
+ 
+15:17:20  Warning: Command {d} not found!
+ 
+15:17:20  Warning: Command {d} not found!
+ 
+15:24:11  Warning: Command {close} not found!
+ 

@@ -75,6 +75,8 @@ int _tmain(int argc, _TCHAR* argv[])
 				break;
 			case commands::CmdTest:
 				printf_s("It works\n");
+				//string packetTest = PacketTypes::getInstance().DestructPacket("Hello`test`")[1].c_str();
+				//printf_s("%s", packetTest.c_str());
 				break;
 			case commands::CmdHelp:
 				printf_s("*************************************************************\n");

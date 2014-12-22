@@ -22,6 +22,9 @@ void ClientReceiver::BeginRecieveCallBack(IAsyncResult ^ar)
 		}
 		String^ test = System::Text::Encoding::ASCII->GetString(recBuffer);
 		array<Byte>^ buffer = gcnew array<Byte>(1024);
+		//GameServer::getInstance().GetClientBySocket(clientSocket);
+		//clientSocket->Handle
+		/*
 		printf_s("%s \n", test);
 		if (test == "test")
 		{
@@ -38,6 +41,7 @@ void ClientReceiver::BeginRecieveCallBack(IAsyncResult ^ar)
 		{
 			//clientSocket->Close();
 		}
+		*/
 		clientSocket->BeginReceive(buffer, 0, 0, SocketFlags::None, gcnew AsyncCallback(ClientReceiver::BeginRecieveCallBack), clientSocket);
 	}
 	catch (...)

@@ -25,7 +25,7 @@ class GameServer
 		//~GameServer();//Destructor.
 		bool StartServer(int);//Start the server. Return false if failed.
 
-		//Client GetClientBySocket(Socket^);
+		Client GetClientBySocket(Socket^);
 
 		void AddClient(Client);
 		void RemoveClient(Client);
